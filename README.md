@@ -147,3 +147,151 @@ int main() {
 --OUTPUT--
 Inorder traversal before deletion: 20 30 40 50 60 70 80 
 Inorder traversal after deleting 50: 20 30 40 60 70 80 
+
+
+
+--------------------------------------------------------------------------------------------* 26-09-2023 *-------------------------------------------------------------------------------------------------------------------
+
+ ---LAB WORK EXAMPLE 10---
+ --CODE--(--1--)
+
+
+ #include <stdio.h>
+#include <stdbool.h>
+struct TreeNode {
+    int val;
+    struct TreeNode* left;
+    struct TreeNode* right;
+};
+
+
+bool areMirrors(struct TreeNode* root1, struct TreeNode* root2) {
+      if (root1 == NULL && root2 == NULL) {
+        return true;
+    }
+    if (root1 == NULL || root2 == NULL) {
+        return false;
+    }   
+  
+    return (root1->val == root2->val) &&
+           areMirrors(root1->left, root2->right) &&
+           areMirrors(root1->right, root2->left);
+}
+
+int main() {
+  
+    struct TreeNode* root1 = malloc(sizeof(struct TreeNode));
+    struct TreeNode* root2 = malloc(sizeof(struct TreeNode));
+
+    // Initialize tree 1
+    root1->val = 1;
+    root1->left = malloc(sizeof(struct TreeNode));
+    root1->left->val = 2;
+    root1->left->left = NULL;
+    root1->left->right = NULL;
+    root1->right = malloc(sizeof(struct TreeNode));
+    root1->right->val = 3;
+    root1->right->left = NULL;
+    root1->right->right = NULL;
+
+    // Initialize tree 2
+    root2->val = 1;
+    root2->left = malloc(sizeof(struct TreeNode));
+    root2->left->val = 3;
+    root2->left->left = NULL;
+    root2->left->right = NULL;
+    root2->right = malloc(sizeof(struct TreeNode));
+    root2->right->val = 2;
+    root2->right->left = NULL;
+    root2->right->right = NULL;
+
+    if (areMirrors(root1, root2)) {
+        printf("The two binary trees are mirrors.\n");
+    } else {
+        printf("The two binary trees are not mirrors.\n");
+    }
+    free(root1->left);
+    free(root1->right);
+    free(root2->left);
+    free(root2->right);
+    free(root1);
+    free(root2);
+
+    return 0;
+}
+
+--OUTPUT--
+The two binary trees are mirrors.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--CODE--(--2--)
+
+ #include <stdio.h>
+#include <stdbool.h>
+struct TreeNode {
+    int val;
+    struct TreeNode* left;
+    struct TreeNode* right;
+};
+
+
+bool areMirrors(struct TreeNode* root1, struct TreeNode* root2) {
+ 
+    if (root1 == NULL && root2 == NULL) {
+        return true;
+    }
+    if (root1 == NULL || root2 == NULL) {
+        return false;
+    }   
+  
+    return (root1->val == root2->val) &&
+           areMirrors(root1->left, root2->right) &&
+           areMirrors(root1->right, root2->left);
+}
+
+int main() {
+  
+    struct TreeNode* root1 = malloc(sizeof(struct TreeNode));
+    struct TreeNode* root2 = malloc(sizeof(struct TreeNode));
+
+    // Initialize tree 1
+    root1->val = 1;
+    root1->left = malloc(sizeof(struct TreeNode));
+    root1->left->val = 5;
+    root1->left->left = NULL;
+    root1->left->right = NULL;
+    root1->right = malloc(sizeof(struct TreeNode));
+    root1->right->val = 3;
+    root1->right->left = NULL;
+    root1->right->right = NULL;
+
+    // Initialize tree 2
+    root2->val = 1;
+    root2->left = malloc(sizeof(struct TreeNode));
+    root2->left->val = 3;
+    root2->left->left = NULL;
+    root2->left->right = NULL;
+    root2->right = malloc(sizeof(struct TreeNode));
+    root2->right->val = 2;
+    root2->right->left = NULL;
+    root2->right->right = NULL;
+
+    if (areMirrors(root1, root2)) {
+        printf("The two binary trees are mirrors.\n");
+    } else {
+        printf("The two binary trees are not mirrors.\n");
+    }
+    free(root1->left);
+    free(root1->right);
+    free(root2->left);
+    free(root2->right);
+    free(root1);
+    free(root2);
+
+    return 0;
+}
+--OUTPUT--
+The two binary trees are not mirrors.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
